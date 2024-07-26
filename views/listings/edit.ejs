@@ -12,36 +12,57 @@
         <div class="row mt-3">
             <div class="col-8 offset-2">
                 <h2>Edit this listing</h2>
-                <form method="post" action="/listings/<%= listing._id %>?_method=Put">
+                <form method="post" action="/listings/<%= listing._id %>?_method=Put" novalidate
+                    class="needs-validation" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label"><b>Title</b></label>
-                        <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control">
+                        <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control"
+                            required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label"><b>Description</b></label>
-                        <textarea type="text" name="listing[description]"
-                            class="form-control"><%= listing.description %></textarea>
+                        <textarea type="text" name="listing[description]" class="form-control"
+                            required><%= listing.description %></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label"><b>Image</b></label>
-                        <input type="text" name="listing[image]" value="<%= listing.image %>" class="form-control">
+                        Orignal listing image <br>
+                        <img src="<%= orignalImageUrl %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label"><b>Upload new image</b></label>
+                        <input type="file" name="listing[image]" class="form-control">
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="title" class="form-label"><b>Price</b></label>
-                            <input type="number" name="listing[price]" value="<%= listing.price %>"
-                                class="form-control">
+                            <input type="number" name="listing[price]" value="<%= listing.price %>" class="form-control"
+                                required>
+                            <div class="invalid-feedback">
+                                Please enter a valid price.
+                            </div>
                         </div>
                         <div class="mb-3 col-md-8">
                             <label for="title" class="form-label"><b>Country</b></label>
                             <input type="text" name="listing[country]" value="<%= listing.country %>"
-                                class="form-control">
+                                class="form-control" required>
+                            <div class="invalid-feedback">
+                                Country name should be valid.
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label"><b>Location</b></label>
-                        <input type="text" name="listing[location]" value="<%= listing.location %>"
-                            class="form-control">
+                        <input type="text" name="listing[location]" value="<%= listing.location %>" class="form-control"
+                            required>
+                        <div class="invalid-feedback">
+                            Location should be valid.
+                        </div>
                     </div>
                     <button class="btn edit-btn mb-3">Edit</button>
                 </form>
